@@ -1,6 +1,3 @@
-# kleos-hackathon
-
-
 # Movie Mentor
 
 > Github Repository for Submission of [KLEOS](https://rait.acm.org/kleos/index.html) Hackathon 2023
