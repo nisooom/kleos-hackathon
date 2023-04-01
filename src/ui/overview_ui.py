@@ -1,6 +1,18 @@
 
 from PyQt5 import QtWidgets, QtGui, QtCore
-from movieClass import Movie
+from dataclasses import dataclass
+
+
+@dataclass
+class Movie:
+    title: str
+    desc: str
+    rating: str
+    imdb_link: str
+    genres: list[str]
+    director: str
+    cast: list[str]
+    year: str
 
 
 class MovieOverviewWidget(QtWidgets.QWidget):
@@ -8,12 +20,16 @@ class MovieOverviewWidget(QtWidgets.QWidget):
     def __init__(self, movie: Movie):
         super().__init__()
         self.movie = movie
-
+        self.setObjectName('overview')
         title_label = QtWidgets.QLabel(movie.title)
+        title_label.setObjectName('title')
         rating_label = QtWidgets.QLabel(movie.rating)
         desc_edit = QtWidgets.QPlainTextEdit(movie.desc)
+        desc_edit.setObjectName('desc')
         info_edit = QtWidgets.QPlainTextEdit()
-        imdb_btn = QtWidgets.QPushButton('Go to IMDB page')
+        imdb_btn = QtWidgets.QPushButton('IMDb')
+        imdb_btn.setObjectName('imdb')
+        imdb_btn.setFont(QtGui.QFont('Impact', 45))
 
         genre_layout = QtWidgets.QHBoxLayout()
         for genre in movie.genres:
@@ -21,18 +37,20 @@ class MovieOverviewWidget(QtWidgets.QWidget):
             genre_btn.setMaximumWidth(120)
             genre_btn.setDisabled(True)
             genre_layout.addWidget(genre_btn)
+            genre_btn.setObjectName('genre')
 
         info_edit.appendPlainText(f'Director: {movie.director}')
         info_edit.appendPlainText(f'Cast: {", ".join(movie.cast)}')
         info_edit.appendPlainText(f'Released on: {movie.year}')
 
-        title_label.setFont(QtGui.QFont('Arial', 25))
-        rating_label.setFont(QtGui.QFont('Arial', 10))
+        title_label.setFont(QtGui.QFont('Inter', 25))
+        rating_label.setFont(QtGui.QFont('Inter', 10))
         rating_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
         desc_edit.setReadOnly(True)
         info_edit.setReadOnly(True)
         info_edit.setMaximumHeight(70)
-        desc_edit.setFont(QtGui.QFont('Arial', 13))
+        info_edit.setObjectName('cast')
+        desc_edit.setFont(QtGui.QFont('Inter', 13))
         imdb_btn.clicked.connect(self.goto_imdb)
 
         header_layout = QtWidgets.QHBoxLayout()
@@ -69,6 +87,7 @@ if __name__ == '__main__':
     )
 
     win = MovieOverviewWidget(item)
+
     win.show()
 
     app.exec()

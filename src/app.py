@@ -4,7 +4,8 @@ from ui.overview_ui import MovieOverviewWidget, Movie
 
 
 app = QtWidgets.QApplication([])
-
+qss_stylesheet = open('src/index.css').read()
+app.setStyleSheet(qss_stylesheet)
 item = Movie(
     'Top Gun: Maverick',
     "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground",
@@ -17,6 +18,7 @@ item = Movie(
 )
 
 win = MovieOverviewWidget(item)
+
 win.show()
 
 app.exec()

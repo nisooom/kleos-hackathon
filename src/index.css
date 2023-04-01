@@ -1,0 +1,45 @@
+QWidget#overview {
+  background-color: #202020;
+  selection-color: white;
+  color: white;
+}
+QPushButton#imdb {
+  background-color: rgb(255, 255, 0);
+  color: black;
+  font-weight: bold;
+  /* font-size: 50; */
+  border-radius: 10;
+  transition: 0.3s ease-in-out;
+}
+QPushButton#imdb:hover {
+  background-color: rgb(255, 221, 0);
+}
+QPushButton#genre {
+  background-color: #343536;
+  color: white;
+  padding-top: 5;
+  padding-bottom: 5;
+  padding-left: 8;
+  padding-right: 8;
+  border-radius: 7;
+}
+QLabel#title {
+  /* background-color: rgb(160, 0, 196); */
+  /* selection-color: white; */
+  color: white;
+  font-weight: bold;
+}
+QPlainTextEdit#cast {
+  /* background-color: rgb(26, 151, 160); */
+  /* selection-color: white; */
+  color: white;
+  background-color: #272626;
+  border-radius: 5;
+  padding: 5;
+}
+QPlainTextEdit#desc {
+  color: white;
+  border: none;
+  background-color: transparent;
+  padding: 2;
+}
