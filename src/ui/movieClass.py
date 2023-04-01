@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import pandas as pd
+import random
 
 @dataclass
 class Movie:
