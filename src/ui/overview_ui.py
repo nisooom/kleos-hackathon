@@ -54,7 +54,7 @@ class MovieOverviewWidget(QtWidgets.QWidget):
 
         items = [self.genre_layout.itemAt(i) for i in range(self.genre_layout.count())]
         for item in items:
-            self.genre_layout.removeItem(item)
+            item.widget().setParent(None)
 
         for genre in movie.genres:
             genre_btn = QtWidgets.QPushButton(genre)
