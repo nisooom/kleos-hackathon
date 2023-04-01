@@ -4,23 +4,22 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from .movieClass import Movie
 
 
-# TEJAS RIGHT HERE
 DEFAULT_STYLESHEET = '''
-QWidget{
-color:#8f8f8f;
-padding-top:5;
-padding-right:5;
-padding-left:5;
-background-color:#1a1a1a;
+QWidget {
+    color:#8f8f8f;
+    padding-top:5;
+    padding-right:5;
+    padding-left:5;
+    background-color:#1a1a1a;
 }
 '''
 SELECTED_STYLESHEET = '''
-QWidget{
-padding-top:5;
-padding-right:5;
-padding-left:5;
-color:#d4d4d4;
-background-color:#1c1c1c;
+QWidget {
+    padding-top:5;
+    padding-right:5;
+    padding-left:5;
+    color:#d4d4d4;
+    background-color:#1c1c1c;
 }
 '''
 

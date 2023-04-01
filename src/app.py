@@ -12,34 +12,20 @@ dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
 def returnList(gen):
-    y = dataset['Genres'].str.contains(f"{gen}")
-    # if y[1] == True:
-    #     print(y)
-    x = dataset[y].sample(min(len(y), 20)).values
+    all_movies = dataset['Genres'].str.contains(f"{gen}")
+    some_movies = dataset[all_movies].sample(min(len(all_movies), 20)).values
 
-    """
-        Movie Items
-
-        0. Title 0     
-        1. Rating 1
-        2. Desc 3
-        3. IMDBLINE  8
-        4. Genre 2
-        5. Director 4
-        6. Cast 6
-        7. Year 7
-    """
     movie_list: list[Movie] = []
-    for item in x:
+    for movie in some_movies:
         movie_list.append(Movie(
-            title=item[0],
-            rating=str(item[1]),
-            genres=eval(item[2]),
-            desc=item[3],
-            director=item[4],
-            cast=eval(item[5]),
-            year=str(int(item[7])),
-            imdb_line=item[8]
+            title=movie[0],
+            rating=str(movie[1]),
+            genres=eval(movie[2]),
+            desc=movie[3],
+            director=movie[4],
+            cast=eval(movie[5]),
+            year=str(int(movie[7])),
+            imdb_link=movie[8]
         ))
 
     return movie_list
@@ -50,19 +36,11 @@ def get_emitter_emit_and_return(genre: str):
     movieslist_widget.update_list(returnList(genre))
 
 
-
-def load_stylesheet():
-    qss_stylesheet = open('src/index.css').read()
-    app.setStyleSheet(qss_stylesheet)
-
-
 app = QtWidgets.QApplication([])
-load_stylesheet()
+stylesheet = open('src/index.css').read()
+app.setStyleSheet(stylesheet)
 
 QtGui.QFontDatabase.addApplicationFont('assets/fonts/static/Inter-Regular.ttf')
-
-watcher = QtCore.QFileSystemWatcher(['src/index.css'])
-watcher.fileChanged.connect(load_stylesheet)
 
 main_window = QtWidgets.QSplitter()
 search_widegt = SearchPanel()
@@ -73,7 +51,6 @@ timefilter_widget = TimeFilterWidget()
 search_widegt.genre_input.currentTextChanged.connect(get_emitter_emit_and_return)
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 
-# Change this
 movieslist_widget.update_list(returnList("Action"))
 
 layout = QtWidgets.QVBoxLayout()

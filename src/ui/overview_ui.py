@@ -71,5 +71,5 @@ class MovieOverviewWidget(QtWidgets.QWidget):
         if self.movie is None:
             return
 
-        url = f'www.imdb.com{self.movie.imdb_line}'
+        url = f'www.imdb.com{self.movie.imdb_link}'
         print(f'Going to {url!r}')
