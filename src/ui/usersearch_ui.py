@@ -6,7 +6,7 @@ genres = ['Select genre', 'Game-Show', 'Adventure', 'Reality-TV', 'Comedy', 'Fan
 
 
 
-class SeachPanel(QtWidgets.QWidget):
+class SearchPanel(QtWidgets.QWidget):
     
     def __init__(self):
         super().__init__()
@@ -20,6 +20,11 @@ class SeachPanel(QtWidgets.QWidget):
         self.name_edit.returnPressed.connect(self.name_filter)
         self.name_edit.returnPressed.connect(self.name_filter)
         self.shuffle_btn.clicked.connect(self.shuffle)
+
+        self.name_edit.setObjectName('search-input')
+        self.genre_input.setObjectName('genre-input')
+        self.shuffle_btn.setObjectName('shuffle')
+        self.setObjectName('input-window')
 
         search_layout = QtWidgets.QHBoxLayout()
         search_layout.addWidget(self.name_edit)
@@ -48,7 +53,7 @@ class SeachPanel(QtWidgets.QWidget):
 
 app = QtWidgets.QApplication([])
 
-win = SeachPanel()
+win = SearchPanel()
 win.show()
 
 app.exec()

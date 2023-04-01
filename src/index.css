@@ -64,3 +64,16 @@ QtWidgets.QWidget {
 QVBoxLayout#card {
   background-color: aquamarine;
 }
+QLineEdit#search-input {
+  background-color: #343536;
+  color: rgb(151, 151, 151);
+}
+QWidget#input-window {
+  background-color: aqua;
+}
+QPushButton#shuffle {
+  background-color: darkviolet;
+}
+QComboBox#genre-input {
+  background-color: darkblue;
+}
