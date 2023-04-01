@@ -54,4 +54,3 @@ class SearchPanel(QtWidgets.QWidget):
     def shuffle(self) -> None:
         genre_chosen = self.genre_input.currentText()
         self.chosenItem.emit(genre_chosen)
-        # print('[NOT IMPLEMENTED]', 'shuffle')

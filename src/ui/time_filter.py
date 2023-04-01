@@ -34,13 +34,10 @@ class TimeFilterWidget(QtWidgets.QWidget):
         if check5:
             self.toggledButton.emit("100")
             self.toggleStates = "100"
-            print("5")
         if check10:
             self.toggledButton.emit("010")
             self.toggleStates = "010"
-            print("10")
         if checkAny:
             self.toggledButton.emit("001")
             self.toggleStates = "001"
-            print("Any")
         self.buttonClicked.emit()

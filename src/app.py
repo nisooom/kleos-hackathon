@@ -8,7 +8,7 @@ from ui.movieClass import Movie
 import pandas as pd
 
 
-dataset = pd.read_csv("src/datasets/clean1.csv")
+dataset = pd.read_csv("clean1.csv")
 
 def update_list():
     key_filter = search_widegt.name_edit.text()
@@ -52,7 +52,7 @@ def update_list():
 
 
 app = QtWidgets.QApplication([])
-stylesheet = open('src/index.css').read()
+stylesheet = open('index.css').read()
 app.setStyleSheet(stylesheet)
 
 main_window = QtWidgets.QSplitter()

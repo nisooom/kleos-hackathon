@@ -70,7 +70,5 @@ df.drop("duration", axis='columns', inplace=True)
 nanYears = df[df["year"].isna()]
 df.drop([i for i in nanYears.index], axis='index', inplace=True)
 
-print(nanYears)
-print(len(df))
-#
+
 df.to_csv("./clean1.csv", index=False)
