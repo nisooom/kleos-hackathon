@@ -2,12 +2,13 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 
 
-genres = ['Select genre', 'Game-Show', 'Adventure', 'Reality-TV', 'Comedy', 'Fantasy', 'Sport', 'Animation', 'Mystery', 'Drama', 'Horror', 'Crime', 'Romance', 'Sci-Fi', 'Film-Noir', 'Adult', 'Biography', 'War', 'Western', 'Music', 'Thriller', 'History', 'Family', 'Action', 'Musical']
+genres = ['Select genre', 'Adventure', 'Comedy', 'Fantasy', 'Sport', 'Animation', 'Mystery', 'Drama', 'Horror', 'Crime', 'Romance', 'Sci-Fi', 'Film-Noir', 'Biography', 'War', 'Western', 'Music', 'Thriller', 'History', 'Family', 'Action','Musical']
 
 
 
 class SearchPanel(QtWidgets.QWidget):
-    
+
+    chosenItem = QtCore.pyqtSignal(str)
     def __init__(self):
         super().__init__()
 
@@ -18,7 +19,7 @@ class SearchPanel(QtWidgets.QWidget):
         self.genre_input.addItems(genres)
         self.name_edit.setPlaceholderText('Search')
         self.name_edit.returnPressed.connect(self.name_filter)
-        self.name_edit.returnPressed.connect(self.name_filter)
+
         self.shuffle_btn.clicked.connect(self.shuffle)
 
         self.name_edit.setObjectName('search-input')
@@ -41,8 +42,8 @@ class SearchPanel(QtWidgets.QWidget):
         self.setLayout(main_layout)
 
     def genre_filter(self, new_genre: str) -> None:
-        print('[NOT IMPLEMENTED]', new_genre)
-
+        genre_chosen = self.genre_input.currentText()
+        self.chosenItem.emit(genre_chosen)
     def name_filter(self) -> None:
         name = self.name_edit.text()
         print('[NOT IMPLEMENTED]', name)

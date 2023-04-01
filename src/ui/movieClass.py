@@ -12,7 +12,7 @@ class Movie:
     genres: list[str]
     director: str
     cast: list[str]
-    year: float
+    year: str
 
     def __str__(self):
         return f"Title - {self.title}: Rating - {self.rating}: Genres - {self.genres}: Director - {self.director}: Cast - {self.cast}: Year - {self.year}: Desc - {self.desc}"
