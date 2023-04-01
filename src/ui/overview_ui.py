@@ -29,7 +29,7 @@ class MovieOverviewWidget(QtWidgets.QWidget):
         self.info_edit.setMaximumHeight(70)
         self.info_edit.setObjectName('cast')
         self.imdb_btn.clicked.connect(self.goto_imdb)
-
+        self.rating_label.setObjectName('rating')
         header_layout = QtWidgets.QHBoxLayout()
         header_layout.addWidget(self.title_label)
         header_layout.addWidget(self.rating_label)
