@@ -1,7 +1,8 @@
 * {
   background-color: #202020;
-  selection-color: white;
+  /* selection-color: white; */
   color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 QPushButton#imdb {
   background-color: rgb(255, 255, 0);
@@ -10,6 +11,7 @@ QPushButton#imdb {
   /* font-size: 50; */
   border-radius: 10;
   margin-bottom: 5;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 QPushButton#imdb:hover {
   background-color: rgb(255, 221, 0);
@@ -26,6 +28,7 @@ QPushButton#genre {
 QLabel#title {
   /* background-color: rgb(160, 0, 196); */
   /* selection-color: white; */
+  margin-top: 25;
   color: white;
   font-weight: bold;
 }
@@ -72,15 +75,15 @@ QLineEdit#search-input {
   border: 2px solid gray;
   border-radius: 4px;
   padding: 1px 18px 1px 3px;
-  min-width: 3em;
+  min-width: 3.5em;
 }
 QLineEdit#search-input:focus {
   border: none;
   outline: none;
 }
-QWidget#input-window {
+/* QWidget#input-window {
   background-color: aqua;
-}
+} */
 QPushButton#shuffle {
   background-color: rgb(12, 159, 217);
   color: #1b1b1b;
@@ -98,7 +101,7 @@ QComboBox#genre-input {
   border: 2px solid gray;
   border-radius: 4px;
   padding: 1px 18px 1px 3px;
-  min-width: 5.75em;
+  min-width: 6em;
 }
 /* QComboBox::drop-down {
   background-color: rgba(59, 59, 59, 0);
@@ -107,4 +110,23 @@ QComboBox#genre-input {
 QComboBox QAbstractItemView {
   border: 2px solid darkgray;
   selection-background-color: lightgray;
+}
+QScrollArea {
+  border-left: 2px solid rgb(63, 63, 63);
+  border-right: 2px solid rgb(63, 63, 63);
+  border-top: 0px solid rgb(63, 63, 63);
+}
+QRadioButton::indicator {
+  width: 15px;
+  height: 15px;
+  background-color: #262626;
+  border-radius: 5;
+  margin-right: 4;
+}
+
+QRadioButton::indicator::unchecked {
+  background-color: #262626;
+}
+QRadioButton::indicator::checked {
+  background-color: #00d7ef;
 }
