@@ -6,10 +6,22 @@ from .movieClass import Movie
 
 # TEJAS RIGHT HERE
 DEFAULT_STYLESHEET = '''
-color: red
+QWidget{
+color:#8f8f8f;
+padding-top:5;
+padding-right:5;
+padding-left:5;
+background-color:##1a1a1a;
+}
 '''
 SELECTED_STYLESHEET = '''
-color: green
+QWidget{
+padding-top:5;
+padding-right:5;
+padding-left:5;
+color:#d4d4d4;
+background-color:#1c1c1c;
+}
 '''
 
 
@@ -33,7 +45,7 @@ class MovieCardItem(QtWidgets.QWidget):
         main_layout.addWidget(title_label)
         main_layout.addWidget(desc_label)
         main_layout.addWidget(genre_label)
-        main_layout.setSpacing(5)
+        main_layout.setSpacing(0)
         self.setLayout(main_layout)
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
