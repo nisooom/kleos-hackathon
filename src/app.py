@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 from ui.overview_ui import MovieOverviewWidget
 from ui.movielist_ui import MovieListWidget
-from ui.movieClass import Movie
+from ui.usersearch_ui import SearchPanel
 from ui.randomData import test_movies
 
 
@@ -20,14 +20,16 @@ watcher = QtCore.QFileSystemWatcher(['src/index.css'])
 watcher.fileChanged.connect(load_stylesheet)
 
 main_window = QtWidgets.QSplitter()
-
-overview_widget = MovieOverviewWidget()
-main_window.addWidget(overview_widget)
-
+search_widegt = SearchPanel()
 movieslist_widget = MovieListWidget()
+overview_widget = MovieOverviewWidget()
+
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 movieslist_widget.update_list(test_movies)
+
+main_window.addWidget(search_widegt)
 main_window.addWidget(movieslist_widget)
+main_window.addWidget(overview_widget)
 
 main_window.resize(800, 600)
 main_window.show()

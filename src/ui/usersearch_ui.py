@@ -49,11 +49,3 @@ class SearchPanel(QtWidgets.QWidget):
 
     def shuffle(self) -> None:
         print('[NOT IMPLEMENTED]', 'shuffle')
-
-
-app = QtWidgets.QApplication([])
-
-win = SearchPanel()
-win.show()
-
-app.exec()
