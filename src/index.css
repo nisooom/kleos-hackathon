@@ -43,3 +43,24 @@ QPlainTextEdit#desc {
   background-color: transparent;
   padding: 2;
 }
+QScrollBar {
+  background: transparent;
+}
+QScrollBar::handle {
+  background: #1b1b1b;
+}
+QScrollBar::handle::pressed {
+  background: #262626;
+}
+QLabel#listTitleLabel {
+  font-weight: bold;
+}
+QtWidgets.QWidget {
+  background-color: aquamarine;
+  border-style: solid;
+  border-color: red;
+  border-width: 5;
+}
+QVBoxLayout#card {
+  background-color: aquamarine;
+}
