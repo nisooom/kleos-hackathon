@@ -69,6 +69,7 @@ class MovieListWidget(QtWidgets.QScrollArea):
         self.selected_card.setStyleSheet(SELECTED_STYLESHEET)
 
     def update_list(self, movies: list[Movie]):
+        self.selected_card = None
         widget = QtWidgets.QWidget()
         layout = QtWidgets.QVBoxLayout()
         for movie in movies:
