@@ -8,7 +8,7 @@ import pandas as pd
 from ui.movieClass import Movie
 import time
 
-dataset = pd.read_csv("src/dataset/clean1.csv")
+dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
 def returnList(gen):
