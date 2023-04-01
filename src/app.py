@@ -1,12 +1,12 @@
+
 from PyQt5 import QtWidgets, QtGui, QtCore
 from ui.overview_ui import MovieOverviewWidget
 from ui.movielist_ui import MovieListWidget
 from ui.usersearch_ui import SearchPanel
 from ui.time_filter import TimeFilterWidget
-from ui.randomData import test_movies
-import pandas as pd
 from ui.movieClass import Movie
-import time
+import pandas as pd
+
 
 dataset = pd.read_csv("src/datasets/clean1.csv")
 
