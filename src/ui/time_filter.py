@@ -8,6 +8,7 @@ class TimeFilterWidget(QtWidgets.QWidget):
         super().__init__()
 
         self.toggleStates = "001"
+        self.toggledButton.emit("001")
         # 3 buttons
         lessThan5Years = QtWidgets.QRadioButton("5 Years")
         lessThan5Years.clicked.connect(lambda: self.years(check5=True))

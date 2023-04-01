@@ -28,14 +28,14 @@ def get_movies_by_genre(gen):
     decrease = 2023
 
     if flags[0]:
-        decrease -=5
+        decrease -= 5
     if flags[1]:
         decrease -= 10
     if flags[2]:
         decrease = 0
 
     for movie in some_movies.values:
-        if int(movie[7]) > decrease:
+        if int(movie[7]) < decrease:
             movie_list.append(Movie(
                 title=movie[0],
                 rating=str(movie[1]),
