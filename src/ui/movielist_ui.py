@@ -11,7 +11,7 @@ color:#8f8f8f;
 padding-top:5;
 padding-right:5;
 padding-left:5;
-background-color:##1a1a1a;
+background-color:#1a1a1a;
 }
 '''
 SELECTED_STYLESHEET = '''
