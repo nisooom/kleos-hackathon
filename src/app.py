@@ -1,4 +1,4 @@
-
+import numpy
 from PyQt5 import QtWidgets, QtGui
 from ui.overview_ui import MovieOverviewWidget
 from ui.movielist_ui import MovieListWidget
@@ -19,33 +19,40 @@ def get_movies_by_genre(gen):
     flags = [i == "1" for i in states]
     print(flags)
 
-    all_movies = dataset['Genres'].str.contains(f"{gen}")
-    some_movies = dataset[all_movies].sample(min(len(all_movies), 20))
-    some_movies = some_movies.sort_values(by=["rating"], ascending=False)
+    all_movies = dataset[dataset['Genres'].str.contains(f"{gen}")]
+    all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
+    print(len(all_movies))
+
+    if flags[0]:
+        all_movies = all_movies[all_movies["year"] >= 2017]
+        all_movies = all_movies[all_movies["year"] >= 2017]
+        print(len(all_movies))
+    elif flags[1]:
+        all_movies = all_movies[all_movies["year"] >= 2012]
+        all_movies = all_movies[all_movies["year"] >= 2012]
+        print(len(all_movies))
+
+    # year = dataset['year'].astype(int)
+    # print(type(year[0]), year[0])
+    # year_movies = dataset['year'].astype(int)>=lowerLimit
+    # more_movies = dataset[year_movies]
+
+    some_movies = all_movies.sample(min(len(all_movies), 30))
+    # some_movies = some_movies.sort_values(by=["rating"], ascending=False)
 
     movie_list: list[Movie] = []
 
-    decrease = 2023
-
-    if flags[0]:
-        decrease -= 5
-    if flags[1]:
-        decrease -= 10
-    if flags[2]:
-        decrease = 0
-
     for movie in some_movies.values:
-        if int(movie[7]) < decrease:
-            movie_list.append(Movie(
-                title=movie[0],
-                rating=str(movie[1]),
-                genres=eval(movie[2]),
-                desc=movie[3],
-                director=movie[4],
-                cast=eval(movie[5]),
-                year=str(int(movie[7])),
-                imdb_link=movie[8]
-            ))
+        movie_list.append(Movie(
+            title=movie[0],
+            rating=str(movie[1]),
+            genres=eval(movie[2]),
+            desc=movie[3],
+            director=movie[4],
+            cast=eval(movie[5]),
+            year=str(movie[7]),
+            imdb_link=movie[8]
+        ))
 
     return movie_list
 
