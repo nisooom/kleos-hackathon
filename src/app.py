@@ -16,10 +16,10 @@ def returnList(gen):
         return returnList("Action")
 
     all_movies = dataset['Genres'].str.contains(f"{gen}")
-    some_movies = dataset[all_movies].sample(min(len(all_movies), 20)).values
-
+    some_movies = dataset[all_movies].sample(min(len(all_movies), 30))
+    some_movies = some_movies.sort_values(by=["rating"], ascending=False)
     movie_list: list[Movie] = []
-    for movie in some_movies:
+    for movie in some_movies.values:
         movie_list.append(Movie(
             title=movie[0],
             rating=str(movie[1]),
@@ -66,6 +66,7 @@ movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 movieslist_widget.update_list(returnList("Action"))
 
 search_widegt.shuffle_btn.clicked.connect(lambda: get_emitter_emit_and_return(search_widegt.genre_input.currentText()))
+
 
 
 layout = QtWidgets.QVBoxLayout()

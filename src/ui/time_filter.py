@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 
 
 class TimeFilterWidget(QtWidgets.QWidget):
-    toggledButton = QtCore.pyqtSignal()
+    toggledButton = QtCore.pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -35,7 +35,7 @@ class TimeFilterWidget(QtWidgets.QWidget):
         self.is10yrselected = False
         self.isAny = False
 
-        self.toggledButton.emit()
+        self.toggledButton.emit("5")
 
         print("5 yrs selected")
 
@@ -44,7 +44,7 @@ class TimeFilterWidget(QtWidgets.QWidget):
         self.is5yrselected = False
         self.isAny = False
 
-        self.toggledButton.emit()
+        self.toggledButton.emit("10")
 
         print("10yrs selected")
 
@@ -53,6 +53,6 @@ class TimeFilterWidget(QtWidgets.QWidget):
         self.is5yrselected = False
         self.isAny = check
 
-        self.toggledButton.emit()
+        self.toggledButton.emit("any")
 
         print("any selected")
