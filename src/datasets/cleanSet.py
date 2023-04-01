@@ -24,9 +24,9 @@ df = df.loc[~df.duplicated(subset=['title', 'year'])]\
 
 
 # Make all movie earnings into NaN [OLD APPROACH]
-# df.loc[df["duration"].str.startswith("$"), 'duration'] = "NaN"
-# df.loc[df["duration"].str.startswith("₹"), 'duration'] = "NaN"
-# df.loc[df["duration"].str.startswith("£"), 'duration'] = "NaN"
+# df.loc[df["duration"].str.startswith("$"), 'duration'] = "0"
+# df.loc[df["duration"].str.startswith("₹"), 'duration'] = "0"
+# df.loc[df["duration"].str.startswith("£"), 'duration'] = "0"
 
 # function to check if there is duration of the movie
 
@@ -53,16 +53,22 @@ df['year'] = df.year.str.extract('(\d+)')
 
 # Cleaning Unreleased films
 unReleased = df[df["duration"].str.contains("not-released") == True]
-df.loc[df.index.isin(unReleased.index), 'duration'] = np.nan
+df.drop([i for i in unReleased.index], axis="index", inplace=True)
+df.drop("keywords", axis='columns', inplace=True)
+
+noData = df[df["overview"].isna()]
+df.drop([i for i in noData.index], axis='index', inplace=True)
+
 unRated = df[df["rating"].str.contains("no-rating") == True]
-df.loc[df.index.isin(unRated.index), 'rating'] = '0'
-noUser = df[df["user_count"].str.contains("0") == True]
-df.loc[df.index.isin(noUser.index), 'user_count'] = np.nan
 
+df.drop([i for i in unRated.index], axis='index', inplace=True)
+df.drop("user_count", axis='columns', inplace=True)
 # Datatype conversion [doesnt work as null values are double and making values float give trailing numbers]
-# df['rating'] = df['rating'].astype('float16')
+df['rating'] = df['rating'].astype('str')
+df.drop("duration", axis='columns', inplace=True)
 
 
-print(df)
 
-df.to_csv("./cleanData.csv", index=False)
+print(len(df))
+
+df.to_csv("./clean1.csv", index=False)
