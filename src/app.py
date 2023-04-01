@@ -8,14 +8,14 @@ import pandas as pd
 from ui.movieClass import Movie
 import time
 
-dataset = pd.read_csv("src/ui/clean1.csv")
+dataset = pd.read_csv("src/dataset/clean1.csv")
 
 
 def returnList(gen):
     y = dataset['Genres'].str.contains(f"{gen}")
     # if y[1] == True:
     #     print(y)
-    x = dataset[y].sample(min(len(y), 10)).values
+    x = dataset[y].sample(min(len(y), 20)).values
 
     """
         Movie Items
