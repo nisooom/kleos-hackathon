@@ -1,4 +1,5 @@
 
+import webbrowser
 from PyQt5 import QtWidgets, QtGui, QtCore
 from .movieClass import Movie
 
@@ -72,4 +73,4 @@ class MovieOverviewWidget(QtWidgets.QWidget):
             return
 
         url = f'www.imdb.com{self.movie.imdb_link}'
-        print(f'Going to {url!r}')
+        webbrowser.open(url)
