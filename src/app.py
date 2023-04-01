@@ -1,24 +1,27 @@
 
 from PyQt5 import QtWidgets, QtGui, QtCore
-from ui.overview_ui import MovieOverviewWidget, Movie
+from ui.overview_ui import MovieOverviewWidget
+from ui.movielist_ui import MovieListWidget
+from ui.movieClass import Movie
+from ui.randomData import test_movies
 
 
 app = QtWidgets.QApplication([])
 qss_stylesheet = open('src/index.css').read()
 app.setStyleSheet(qss_stylesheet)
-item = Movie(
-    'Top Gun: Maverick',
-    "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground",
-    '8.6',
-    '/title/tt98492',
-    ['action', 'suspense', 'more-shit', 'rom'],
-    'Mr Director',
-    ['NAME-1', 'name-2', 'name-3'],
-    '2014'
-)
 
-win = MovieOverviewWidget(item)
+QtGui.QFontDatabase.addApplicationFont('assets/fonts/static/Inter-Regular.ttf')
 
-win.show()
+main_window = QtWidgets.QSplitter()
+
+overview_widget = MovieOverviewWidget(test_movies[0])
+main_window.addWidget(overview_widget)
+
+moveslist_widget = MovieListWidget()
+moveslist_widget.update_list(test_movies)
+main_window.addWidget(moveslist_widget)
+
+main_window.resize(800, 600)
+main_window.show()
 
 app.exec()

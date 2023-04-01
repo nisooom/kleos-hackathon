@@ -18,7 +18,7 @@ class Movie:
 
 
 class Algorithm:
-    dataset = pd.read_csv("clean1.csv")
+    dataset = pd.read_csv("src/ui/clean1.csv")
 
     g_data = [i for i in dataset.loc[:, :].values]
     curr_set = []
