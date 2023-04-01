@@ -12,6 +12,9 @@ dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
 def returnList(gen):
+    if gen == "Select genre":
+        return returnList("Action")
+
     all_movies = dataset['Genres'].str.contains(f"{gen}")
     some_movies = dataset[all_movies].sample(min(len(all_movies), 20)).values
 
@@ -55,6 +58,7 @@ search_widegt.genre_input.currentTextChanged.connect(get_emitter_emit_and_return
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 
 movieslist_widget.update_list(returnList("Action"))
+
 
 layout = QtWidgets.QVBoxLayout()
 layout.addWidget(timefilter_widget)
