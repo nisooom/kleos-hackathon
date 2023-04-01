@@ -45,6 +45,8 @@ QPlainTextEdit#desc {
 }
 QScrollBar {
   background: transparent;
+  width: 0;
+  height: 0;
 }
 QScrollBar::handle {
   background: #1b1b1b;
@@ -55,12 +57,54 @@ QScrollBar::handle::pressed {
 QLabel#listTitleLabel {
   font-weight: bold;
 }
-QtWidgets.QWidget {
+/* QtWidgets.QWidget {
   background-color: aquamarine;
   border-style: solid;
   border-color: red;
   border-width: 5;
-}
-QVBoxLayout#card {
+} */
+/* QVBoxLayout#card {
   background-color: aquamarine;
+} */
+QLineEdit#search-input {
+  background-color: #343536;
+  color: rgb(151, 151, 151);
+  border: 2px solid gray;
+  border-radius: 4px;
+  padding: 1px 18px 1px 3px;
+  min-width: 3em;
+}
+QLineEdit#search-input:focus {
+  border: none;
+  outline: none;
+}
+QWidget#input-window {
+  background-color: aqua;
+}
+QPushButton#shuffle {
+  background-color: rgb(12, 159, 217);
+  color: #1b1b1b;
+  font-weight: bold;
+  padding-top: 7.5;
+  padding-bottom: 7.5;
+  border-radius: 5;
+}
+QPushButton#shuffle:hover {
+  background-color: rgb(6, 117, 161);
+  color: rgb(226, 226, 226);
+}
+QComboBox#genre-input {
+  background-color: rgb(24, 24, 24);
+  border: 2px solid gray;
+  border-radius: 4px;
+  padding: 1px 18px 1px 3px;
+  min-width: 5.75em;
+}
+/* QComboBox::drop-down {
+  background-color: rgba(59, 59, 59, 0);
+  color: antiquewhite;
+} */
+QComboBox QAbstractItemView {
+  border: 2px solid darkgray;
+  selection-background-color: lightgray;
 }

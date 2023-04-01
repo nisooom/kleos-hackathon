@@ -21,6 +21,11 @@ class SearchPanel(QtWidgets.QWidget):
         self.name_edit.returnPressed.connect(self.name_filter)
         self.shuffle_btn.clicked.connect(self.shuffle)
 
+        self.name_edit.setObjectName('search-input')
+        self.genre_input.setObjectName('genre-input')
+        self.shuffle_btn.setObjectName('shuffle')
+        self.setObjectName('input-window')
+
         search_layout = QtWidgets.QHBoxLayout()
         search_layout.addWidget(self.name_edit)
         search_layout.addWidget(self.genre_input)
