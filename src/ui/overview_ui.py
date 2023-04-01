@@ -69,5 +69,5 @@ class MovieOverviewWidget(QtWidgets.QWidget):
         if self.movie is None:
             return
 
-        url = f'www.imdb.com{self.movie.imdb_link}'
+        url = f'https://www.imdb.com{self.movie.imdb_link}'
         webbrowser.open(url)
