@@ -7,6 +7,7 @@ genres = ['Select genre', 'Adventure', 'Comedy', 'Fantasy', 'Sport', 'Animation'
 
 class SearchPanel(QtWidgets.QWidget):
     chosenItem = QtCore.pyqtSignal(str)
+    input_string = QtCore.pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -48,7 +49,7 @@ class SearchPanel(QtWidgets.QWidget):
     
     def name_filter(self) -> None:
         name = self.name_edit.text()
-        print('[NOT IMPLEMENTED]', name)
+        self.input_string.emit(name)
 
     def shuffle(self) -> None:
         genre_chosen = self.genre_input.currentText()

@@ -12,13 +12,21 @@ dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
 def update_list():
+    key_filter = search_widegt.name_edit.text()
     genre = search_widegt.genre_input.currentText()
     time_flags = [i == "1" for i in timefilter_widget.toggleStates]
 
-    if genre == 'Select genre':
-        genre = 'Action'
+    if key_filter != "":
+        title_filter = dataset[dataset['title'].str.contains(key_filter)]
+        overview_filter = dataset[dataset['overview'].str.contains(key_filter)]
+        cast_filter = dataset[dataset['cast'].str.contains(key_filter)]
+        director_filter = dataset[dataset['director'].str.contains(key_filter)]
+        all_movies = pd.concat([director_filter, title_filter, overview_filter, cast_filter])
+    elif genre == 'Select genre':
+        all_movies = dataset
+    else:
+        all_movies = dataset[dataset['Genres'].str.contains(f"{genre}")]
 
-    all_movies = dataset[dataset['Genres'].str.contains(f"{genre}")]
     all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
 
     if time_flags[0]:
@@ -27,6 +35,7 @@ def update_list():
         all_movies = all_movies[all_movies["year"] >= 2012]
 
     some_movies = all_movies.sample(min(len(all_movies), 30))
+    some_movies = some_movies.sort_values(by=['rating'], ascending=False)
     movies_list: list[Movie] = []
     for movie in some_movies.values:
         movies_list.append(Movie(
@@ -39,7 +48,7 @@ def update_list():
             year=str(movie[7]),
             imdb_link=movie[8]
         ))
-    
+
     movieslist_widget.update_list(movies_list)
 
 
@@ -62,6 +71,7 @@ timefilter_widget = TimeFilterWidget()
 update_list()
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 
+search_widegt.input_string.connect(update_list)
 search_widegt.genre_input.currentTextChanged.connect(update_list)
 search_widegt.shuffle_btn.clicked.connect(update_list)
 timefilter_widget.buttonClicked.connect(update_list)
