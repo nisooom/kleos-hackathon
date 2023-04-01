@@ -6,7 +6,7 @@ genres = ['Select genre', 'Game-Show', 'Adventure', 'Reality-TV', 'Comedy', 'Fan
 
 
 
-class SeachPanel(QtWidgets.QWidget):
+class SearchPanel(QtWidgets.QWidget):
     
     def __init__(self):
         super().__init__()
@@ -44,11 +44,3 @@ class SeachPanel(QtWidgets.QWidget):
 
     def shuffle(self) -> None:
         print('[NOT IMPLEMENTED]', 'shuffle')
-
-
-app = QtWidgets.QApplication([])
-
-win = SeachPanel()
-win.show()
-
-app.exec()
