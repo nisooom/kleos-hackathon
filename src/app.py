@@ -10,7 +10,6 @@ import pandas as pd
 
 dataset = pd.read_csv("src/datasets/clean1.csv")
 
-
 def update_list():
     key_filter = search_widegt.name_edit.text()
     genre = search_widegt.genre_input.currentText()
