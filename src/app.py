@@ -1,5 +1,5 @@
 
-from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtGui
 from ui.overview_ui import MovieOverviewWidget
 from ui.movielist_ui import MovieListWidget
 from ui.usersearch_ui import SearchPanel
