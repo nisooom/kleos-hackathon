@@ -4,6 +4,8 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 
 class TimeFilterWidget(QtWidgets.QWidget):
     toggledButton = QtCore.pyqtSignal(str)
+    buttonClicked = QtCore.pyqtSignal()
+
     def __init__(self):
         super().__init__()
 
@@ -20,8 +22,6 @@ class TimeFilterWidget(QtWidgets.QWidget):
         anyYears.clicked.connect(lambda: self.years(checkAny=True))
 
         anyYears.setChecked(True)
-
-
 
         # H Layout
         layout = QtWidgets.QHBoxLayout()
@@ -43,3 +43,4 @@ class TimeFilterWidget(QtWidgets.QWidget):
             self.toggledButton.emit("001")
             self.toggleStates = "001"
             print("Any")
+        self.buttonClicked.emit()

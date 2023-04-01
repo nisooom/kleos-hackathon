@@ -17,20 +17,16 @@ def get_movies_by_genre(gen):
 
     states = timefilter_widget.toggleStates
     flags = [i == "1" for i in states]
-    print(flags)
 
     all_movies = dataset[dataset['Genres'].str.contains(f"{gen}")]
     all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
-    print(len(all_movies))
+
+    print(flags)
 
     if flags[0]:
         all_movies = all_movies[all_movies["year"] >= 2017]
-        all_movies = all_movies[all_movies["year"] >= 2017]
-        print(len(all_movies))
     elif flags[1]:
         all_movies = all_movies[all_movies["year"] >= 2012]
-        all_movies = all_movies[all_movies["year"] >= 2012]
-        print(len(all_movies))
 
     # year = dataset['year'].astype(int)
     # print(type(year[0]), year[0])
@@ -80,7 +76,7 @@ movieslist_widget.update_list(get_movies_by_genre("Action"))
 
 search_widegt.shuffle_btn.clicked.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
 
-timefilter_widget.toggledButton.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
+timefilter_widget.buttonClicked.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
 
 layout = QtWidgets.QVBoxLayout()
 layout.addWidget(timefilter_widget)
