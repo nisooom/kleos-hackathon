@@ -1,6 +1,7 @@
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from movieClass import Movie
+from randomData import movies
 
 
 class MovieCardItem(QtWidgets.QWidget):
@@ -36,12 +37,7 @@ class MovieListWidget(QtWidgets.QScrollArea):
 
 
 
-movies = [
-    Movie('Movie -1', 'Once upon a time there lived an asshole', ['Comedy', 'Adventure', 'Drama']),
-    Movie('Movie -2', 'Once upon a time there lived an guy', ['Action', 'Adventure', 'Drama']),
-    Movie('Movie -3', 'Once upon a time there lived an girl', ['Romance', 'Adventure', 'Drama']),
-    Movie('Movie -4', 'Once upon a time there lived an couple', ['Suspense', 'Crime', 'Drama']),
-] * 5
+
 
 app = QtWidgets.QApplication([])
 app.setStyleSheet('''
