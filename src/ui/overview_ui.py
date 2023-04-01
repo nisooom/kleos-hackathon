@@ -23,14 +23,11 @@ class MovieOverviewWidget(QtWidgets.QWidget):
 
         self.genre_layout = QtWidgets.QHBoxLayout()
 
-        self.title_label.setFont(QtGui.QFont('Inter', 25))
-        self.rating_label.setFont(QtGui.QFont('Inter', 10))
         self.rating_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.desc_edit.setReadOnly(True)
         self.info_edit.setReadOnly(True)
         self.info_edit.setMaximumHeight(70)
         self.info_edit.setObjectName('cast')
-        self.desc_edit.setFont(QtGui.QFont('Inter', 13))
         self.imdb_btn.clicked.connect(self.goto_imdb)
 
         header_layout = QtWidgets.QHBoxLayout()
