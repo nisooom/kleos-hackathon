@@ -1,5 +1,5 @@
 
-from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtGui
 from ui.overview_ui import MovieOverviewWidget
 from ui.movielist_ui import MovieListWidget
 from ui.usersearch_ui import SearchPanel
@@ -15,21 +15,37 @@ def get_movies_by_genre(gen):
     if gen == "Select genre":
         return get_movies_by_genre("Action")
 
+    states = timefilter_widget.toggleStates
+    flags = [i == "1" for i in states]
+    print(flags)
+
     all_movies = dataset['Genres'].str.contains(f"{gen}")
-    some_movies = dataset[all_movies].sample(min(len(all_movies), 20)).values
+    some_movies = dataset[all_movies].sample(min(len(all_movies), 20))
+    some_movies = some_movies.sort_values(by=["rating"], ascending=False)
 
     movie_list: list[Movie] = []
-    for movie in some_movies:
-        movie_list.append(Movie(
-            title=movie[0],
-            rating=str(movie[1]),
-            genres=eval(movie[2]),
-            desc=movie[3],
-            director=movie[4],
-            cast=eval(movie[5]),
-            year=str(int(movie[7])),
-            imdb_link=movie[8]
-        ))
+
+    decrease = 2023
+
+    if flags[0]:
+        decrease -=5
+    if flags[1]:
+        decrease -= 10
+    if flags[2]:
+        decrease = 0
+
+    for movie in some_movies.values:
+        if int(movie[7]) > decrease:
+            movie_list.append(Movie(
+                title=movie[0],
+                rating=str(movie[1]),
+                genres=eval(movie[2]),
+                desc=movie[3],
+                director=movie[4],
+                cast=eval(movie[5]),
+                year=str(int(movie[7])),
+                imdb_link=movie[8]
+            ))
 
     return movie_list
 
@@ -57,6 +73,7 @@ movieslist_widget.update_list(get_movies_by_genre("Action"))
 
 search_widegt.shuffle_btn.clicked.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
 
+timefilter_widget.toggledButton.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
 
 layout = QtWidgets.QVBoxLayout()
 layout.addWidget(timefilter_widget)

@@ -4,24 +4,23 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 
 class TimeFilterWidget(QtWidgets.QWidget):
     toggledButton = QtCore.pyqtSignal(str)
-
     def __init__(self):
         super().__init__()
 
-        self.is5yrselected = False
-        self.is10yrselected = False
-        self.isAny = True
-
+        self.toggleStates = "001"
         # 3 buttons
         lessThan5Years = QtWidgets.QRadioButton("5 Years")
-        lessThan5Years.clicked.connect(lambda: self.years5(True))
+        lessThan5Years.clicked.connect(lambda: self.years(check5=True))
 
         lessThan10Years = QtWidgets.QRadioButton("10 Years")
-        lessThan10Years.clicked.connect(lambda: self.years10(True))
+        lessThan10Years.clicked.connect(lambda: self.years(check10=True))
 
         anyYears = QtWidgets.QRadioButton("Any")
-        anyYears.clicked.connect(lambda: self.yearsAny(True))
+        anyYears.clicked.connect(lambda: self.years(checkAny=True))
+
         anyYears.setChecked(True)
+
+
 
         # H Layout
         layout = QtWidgets.QHBoxLayout()
@@ -30,29 +29,16 @@ class TimeFilterWidget(QtWidgets.QWidget):
         layout.addWidget(anyYears)
         self.setLayout(layout)
 
-    def years5(self, check):
-        self.is5yrselected = check
-        self.is10yrselected = False
-        self.isAny = False
-
-        self.toggledButton.emit("5")
-
-        print("5 yrs selected")
-
-    def years10(self, check):
-        self.is10yrselected = check
-        self.is5yrselected = False
-        self.isAny = False
-
-        self.toggledButton.emit("10")
-
-        print("10yrs selected")
-
-    def yearsAny(self, check):
-        self.is10yrselected = False
-        self.is5yrselected = False
-        self.isAny = check
-
-        self.toggledButton.emit("any")
-
-        print("any selected")
+    def years(self, check5=False, check10=False, checkAny=False):
+        if check5:
+            self.toggledButton.emit("100")
+            self.toggleStates = "100"
+            print("5")
+        if check10:
+            self.toggledButton.emit("010")
+            self.toggleStates = "010"
+            print("10")
+        if checkAny:
+            self.toggledButton.emit("001")
+            self.toggleStates = "001"
+            print("Any")
