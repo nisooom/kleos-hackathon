@@ -6,11 +6,18 @@ from ui.movieClass import Movie
 from ui.randomData import test_movies
 
 
+def load_stylesheet():
+    qss_stylesheet = open('src/index.css').read()
+    app.setStyleSheet(qss_stylesheet)
+
+
 app = QtWidgets.QApplication([])
-qss_stylesheet = open('src/index.css').read()
-app.setStyleSheet(qss_stylesheet)
+load_stylesheet()
 
 QtGui.QFontDatabase.addApplicationFont('assets/fonts/static/Inter-Regular.ttf')
+
+watcher = QtCore.QFileSystemWatcher(['src/index.css'])
+watcher.fileChanged.connect(load_stylesheet)
 
 main_window = QtWidgets.QSplitter()
 
