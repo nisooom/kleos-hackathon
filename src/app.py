@@ -11,6 +11,7 @@ import pandas as pd
 dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
+# USELESS FUNCTION
 def get_movies_by_genre(gen):
     if gen == "Select genre":
         return get_movies_by_genre("Action")
@@ -21,20 +22,12 @@ def get_movies_by_genre(gen):
     all_movies = dataset[dataset['Genres'].str.contains(f"{gen}")]
     all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
 
-    print(flags)
-
     if flags[0]:
         all_movies = all_movies[all_movies["year"] >= 2017]
     elif flags[1]:
         all_movies = all_movies[all_movies["year"] >= 2012]
 
-    # year = dataset['year'].astype(int)
-    # print(type(year[0]), year[0])
-    # year_movies = dataset['year'].astype(int)>=lowerLimit
-    # more_movies = dataset[year_movies]
-
     some_movies = all_movies.sample(min(len(all_movies), 30))
-    # some_movies = some_movies.sort_values(by=["rating"], ascending=False)
 
     movie_list: list[Movie] = []
 
@@ -53,6 +46,38 @@ def get_movies_by_genre(gen):
     return movie_list
 
 
+def update_list():
+    genre = search_widegt.genre_input.currentText()
+    time_flags = [i == "1" for i in timefilter_widget.toggleStates]
+
+    if genre == 'Select genre':
+        genre = 'Action'
+
+    all_movies = dataset[dataset['Genres'].str.contains(f"{genre}")]
+    all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
+
+    if time_flags[0]:
+        all_movies = all_movies[all_movies["year"] >= 2017]
+    elif time_flags[1]:
+        all_movies = all_movies[all_movies["year"] >= 2012]
+
+    some_movies = all_movies.sample(min(len(all_movies), 30))
+    movies_list: list[Movie] = []
+    for movie in some_movies.values:
+        movies_list.append(Movie(
+            title=movie[0],
+            rating=str(movie[1]),
+            genres=eval(movie[2]),
+            desc=movie[3],
+            director=movie[4],
+            cast=eval(movie[5]),
+            year=str(movie[7]),
+            imdb_link=movie[8]
+        ))
+    
+    movieslist_widget.update_list(movies_list)
+
+
 app = QtWidgets.QApplication([])
 stylesheet = open('src/index.css').read()
 app.setStyleSheet(stylesheet)
@@ -68,15 +93,13 @@ movieslist_widget = MovieListWidget()
 overview_widget = MovieOverviewWidget()
 timefilter_widget = TimeFilterWidget()
 
-search_widegt.genre_input.currentTextChanged.connect(lambda genre: movieslist_widget.update_list(get_movies_by_genre(genre)))
 
+update_list()
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 
-movieslist_widget.update_list(get_movies_by_genre("Action"))
-
-search_widegt.shuffle_btn.clicked.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
-
-timefilter_widget.buttonClicked.connect(lambda: movieslist_widget.update_list(get_movies_by_genre(search_widegt.genre_input.currentText())))
+search_widegt.genre_input.currentTextChanged.connect(update_list)
+search_widegt.shuffle_btn.clicked.connect(update_list)
+timefilter_widget.buttonClicked.connect(update_list)
 
 layout = QtWidgets.QVBoxLayout()
 layout.addWidget(timefilter_widget)
