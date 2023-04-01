@@ -11,41 +11,6 @@ import pandas as pd
 dataset = pd.read_csv("src/datasets/clean1.csv")
 
 
-# USELESS FUNCTION
-def get_movies_by_genre(gen):
-    if gen == "Select genre":
-        return get_movies_by_genre("Action")
-
-    states = timefilter_widget.toggleStates
-    flags = [i == "1" for i in states]
-
-    all_movies = dataset[dataset['Genres'].str.contains(f"{gen}")]
-    all_movies['year'] = all_movies.loc[:, 'year'].astype(int)
-
-    if flags[0]:
-        all_movies = all_movies[all_movies["year"] >= 2017]
-    elif flags[1]:
-        all_movies = all_movies[all_movies["year"] >= 2012]
-
-    some_movies = all_movies.sample(min(len(all_movies), 30))
-
-    movie_list: list[Movie] = []
-
-    for movie in some_movies.values:
-        movie_list.append(Movie(
-            title=movie[0],
-            rating=str(movie[1]),
-            genres=eval(movie[2]),
-            desc=movie[3],
-            director=movie[4],
-            cast=eval(movie[5]),
-            year=str(movie[7]),
-            imdb_link=movie[8]
-        ))
-
-    return movie_list
-
-
 def update_list():
     genre = search_widegt.genre_input.currentText()
     time_flags = [i == "1" for i in timefilter_widget.toggleStates]
