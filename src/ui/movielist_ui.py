@@ -3,7 +3,6 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from movieClass import Movie
 
 
-
 class MovieCardItem(QtWidgets.QWidget):
 
     def __init__(self, movie: Movie):
