@@ -35,8 +35,13 @@ def returnList(gen):
 
 
 def get_emitter_emit_and_return(genre: str):
+    if genre is None:
+        print("here")
+        movieslist_widget.update_list(returnList("Action"))
+    else:
+        movieslist_widget.update_list(returnList(genre))
+
     print(genre)
-    movieslist_widget.update_list(returnList(genre))
 
 
 app = QtWidgets.QApplication([])
@@ -52,9 +57,12 @@ overview_widget = MovieOverviewWidget()
 timefilter_widget = TimeFilterWidget()
 
 search_widegt.genre_input.currentTextChanged.connect(get_emitter_emit_and_return)
+
 movieslist_widget.movie_clicked.connect(overview_widget.update_movie)
 
 movieslist_widget.update_list(returnList("Action"))
+
+search_widegt.shuffle_btn.clicked.connect(lambda: get_emitter_emit_and_return(search_widegt.genre_input.currentText()))
 
 
 layout = QtWidgets.QVBoxLayout()
