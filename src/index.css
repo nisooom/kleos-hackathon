@@ -1,4 +1,4 @@
-QSplitter {
+* {
   background-color: #202020;
   selection-color: white;
   color: white;
@@ -9,6 +9,7 @@ QPushButton#imdb {
   font-weight: bold;
   /* font-size: 50; */
   border-radius: 10;
+  margin-bottom: 5;
 }
 QPushButton#imdb:hover {
   background-color: rgb(255, 221, 0);
