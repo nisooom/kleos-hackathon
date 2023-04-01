@@ -21,10 +21,11 @@ watcher.fileChanged.connect(load_stylesheet)
 
 main_window = QtWidgets.QSplitter()
 
-overview_widget = MovieOverviewWidget(test_movies[0])
+overview_widget = MovieOverviewWidget()
 main_window.addWidget(overview_widget)
 
 moveslist_widget = MovieListWidget()
+moveslist_widget.movie_clicked.connect(overview_widget.update_movie)
 moveslist_widget.update_list(test_movies)
 main_window.addWidget(moveslist_widget)
 
