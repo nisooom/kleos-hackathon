@@ -48,9 +48,12 @@ app = QtWidgets.QApplication([])
 stylesheet = open('src/index.css').read()
 app.setStyleSheet(stylesheet)
 
-QtGui.QFontDatabase.addApplicationFont('assets/fonts/static/Inter-Regular.ttf')
-
 main_window = QtWidgets.QSplitter()
+
+main_window.setWindowTitle('Movie Mentor - Kleos Hackathon')
+window_icon = QtGui.QIcon('assets/MovieMentorLogo.png')
+main_window.setWindowIcon(window_icon)
+
 search_widegt = SearchPanel()
 movieslist_widget = MovieListWidget()
 overview_widget = MovieOverviewWidget()
