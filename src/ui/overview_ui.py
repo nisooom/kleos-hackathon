@@ -1,18 +1,6 @@
 
 from PyQt5 import QtWidgets, QtGui, QtCore
-from dataclasses import dataclass
-
-
-@dataclass
-class Movie:
-    title: str
-    desc: str
-    rating: str
-    imdb_link: str
-    genres: list[str]
-    director: str
-    cast: list[str]
-    year: str
+from movieClass import Movie
 
 
 class MovieOverviewWidget(QtWidgets.QWidget):
