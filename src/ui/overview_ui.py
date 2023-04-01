@@ -21,7 +21,7 @@ class MovieOverviewWidget(QtWidgets.QWidget):
         self.movie = None
 
         self.genre_layout = QtWidgets.QHBoxLayout()
-        
+
         self.title_label.setFont(QtGui.QFont('Inter', 25))
         self.rating_label.setFont(QtGui.QFont('Inter', 10))
         self.rating_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -71,5 +71,5 @@ class MovieOverviewWidget(QtWidgets.QWidget):
         if self.movie is None:
             return
 
-        url = f'www.imdb.com{self.movie.imdb_link}'
+        url = f'www.imdb.com{self.movie.imdb_line}'
         print(f'Going to {url!r}')
